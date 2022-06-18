@@ -1,16 +1,15 @@
+import sendgrid
 import os
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+from sendgrid.helpers.mail import *
 
-message = Mail(
-    from_email='ispg4103@ispgaya.pt',
-    to_emails='joaomcordeiro98@gmail.com',
-    subject='Hello Friend, Looks Like Your Plant Needs Some Water')
-try:
-    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    response = sg.send(message)
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
-except Exception as e:
-    print(e.message)
+sg = sendgrid.SendGridAPIClient('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')
+from_email = Email("ispg4103@ispgaya.pt")
+to_email = To("joaomcordeiro98@gmail.com")
+subject = "Sending with SendGrid is Fun"
+content = Content("text/plain", "and easy to do anywhere, even with Python")
+mail = Mail(from_email, to_email, subject, content)
+response = sg.client.mail.send.post(request_body=mail.get())
+
+print(response.status_code)
+print(response.body)
+print(response.headers)
