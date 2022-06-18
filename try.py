@@ -11,7 +11,7 @@ GPIO.setup(channel, GPIO.IN)
 def callback(channel):
         if GPIO.input(channel):
                 print("Water Not Detected!")
-                execfile('try.py')
+                execfile('send.py')
         else:
                 print("Water Detected!")
 
