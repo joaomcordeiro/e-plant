@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-import send
 
 
 #GPIO SETUP
@@ -10,8 +9,7 @@ GPIO.setup(channel, GPIO.IN)
 
 def callback(channel):
         if GPIO.input(channel):
-                print("Water Not Detected!")
-                execfile('send.py')
+                import send
         else:
                 print("Water Detected!")
 
