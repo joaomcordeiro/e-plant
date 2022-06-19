@@ -16,7 +16,6 @@ bcc = "joaomcordeiro98@gmail.com"
 sender_password = "INSERT PASSWORD"
 msg = MIMEMultipart()
 html_message = """
-html_message = """
 <html>
 <bodystyle="background-color:#77b300;">
 <p style="font-family:verdana">Hi, it looks like your plant needs some water!</p>
