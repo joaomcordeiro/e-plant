@@ -1,15 +1,47 @@
-import sendgrid
-import os
-from sendgrid.helpers.mail import *
+from email.mime.text import MIMEText
 
-sg = sendgrid.SendGridAPIClient('')
-from_email = Email("ispg4103@ispgaya.pt")
-to_email = To("joaomcordeiro98@gmail.com")
-subject = "Sending with SendGrid is Fun"
-content = Content("text/plain", "and easy to do anywhere, even with Python")
-mail = Mail(from_email, to_email, subject, content)
-response = sg.client.mail.send.post(request_body=mail.get())
+from email.mime.multipart import MIMEMultipart
 
-print(response.status_code)
-print(response.body)
-print(response.headers)
+import smtplib
+
+import ssl
+
+server = smtplib.SMTP('smtp-mail.outlook.com',587)
+
+server.starttls()
+
+sender = "eplantnotifier@outlook.com"
+recipient = "ispg4103@ispgaya.pt"
+bcc = "joaomcordeiro98@gmail.com"
+sender_password = "INSERT PASSWORD"
+msg = MIMEMultipart()
+html_message = """
+<html>
+<body>
+
+<p style="font-family:verdana">A PUTA DA PLANTA PRECISA DE AGUA</p>
+<p style="font-family:'Courier New'">A PUTA DA PLANTA PRECISA DE AGUA</p>
+
+</body>
+</html>
+"""
+
+msg.attach(MIMEText(html_message, "html"))
+
+msg['From']= sender
+
+msg['To']= recipient
+
+msg['Subject']= "Automatic ePlant Notifier"
+
+msg["Bcc"] = bcc
+
+msg["Cc"] = recipient
+
+text = msg.as_string()
+
+server.login(sender ,sender_password)
+
+server.sendmail(sender, recipient, text)
+
+print('Mail sent')
