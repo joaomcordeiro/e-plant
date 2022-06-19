@@ -22,14 +22,6 @@ html_message = """
 <p style="font-family:verdana">Hi, it looks like your plant needs some water!</p>
 </body>
 </html>
-
-"""body>
-
-<p style="font-family:verdana">A PUTA DA PLANTA PRECISA DE AGUA</p>
-<p style="font-family:'Courier New'">A PUTA DA PLANTA PRECISA DE AGUA</p>
-
-</body>
-</html>
 """
 
 msg.attach(MIMEText(html_message, "html"))
