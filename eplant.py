@@ -4,7 +4,6 @@ import smtplib
 import ssl
 import RPi.GPIO as GPIO
 import time
-import send
 
 from email.mime.text import MIMEText
 
