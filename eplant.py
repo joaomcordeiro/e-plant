@@ -6,13 +6,11 @@ import RPi.GPIO as GPIO
 import time
 
 from email.mime.text import MIMEText
-
 from email.mime.multipart import MIMEMultipart
-
 import smtplib
-
 import ssl
-
+server = smtplib.SMTP('smtp-mail.outlook.com',587)
+server.starttls()
 
 #GPIO SETUP
 channel = 21
@@ -21,9 +19,7 @@ GPIO.setup(channel, GPIO.IN)
 
 def callback(channel):
         if GPIO.input(channel):
-server = smtplib.SMTP('smtp-mail.outlook.com',587)
 
-server.starttls()
 
 sender = "eplantnotifier@outlook.com"
 recipient = "ispg4103@ispgaya.pt"
