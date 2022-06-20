@@ -11,16 +11,6 @@ import smtplib
 import ssl
 server = smtplib.SMTP('smtp-mail.outlook.com',587)
 server.starttls()
-
-#GPIO SETUP
-channel = 21
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel, GPIO.IN)
-
-def callback(channel):
-        if GPIO.input(channel):
-
-
 sender = "eplantnotifier@outlook.com"
 recipient = "ispg4103@ispgaya.pt"
 bcc = "joaomcordeiro98@gmail.com"
@@ -50,6 +40,13 @@ msg["Cc"] = recipient
 text = msg.as_string()
 
 server.login(sender ,sender_password)
+#GPIO SETUP
+channel = 21
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(channel, GPIO.IN)
+
+def callback(channel):
+        if GPIO.input(channel):
 
 server.sendmail(sender, recipient, text)
 
