@@ -19,7 +19,7 @@ server = smtplib.SMTP('smtp-mail.outlook.com',587)
 server.starttls()
 
 sender = "eplantnotifier@outlook.com"
-recipient = "ispg4103@ispgaya.pt"
+recipient = "insert password"
 bcc = "joaomcordeiro98@gmail.com"
 sender_password = "ispg12345"
 msg = MIMEMultipart()
