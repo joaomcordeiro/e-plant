@@ -13,14 +13,22 @@ import smtplib
 
 import ssl
 
+
+#GPIO SETUP
+channel = 21
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(channel, GPIO.IN)
+
+def callback(channel):
+        if GPIO.input(channel):
 server = smtplib.SMTP('smtp-mail.outlook.com',587)
 
 server.starttls()
 
 sender = "eplantnotifier@outlook.com"
-recipient = "insert password"
+recipient = "ispg4103@ispgaya.pt"
 bcc = "joaomcordeiro98@gmail.com"
-sender_password = "ispg12345"
+sender_password = "INSERT PASSWORD"
 msg = MIMEMultipart()
 html_message = """
 <html>
@@ -44,17 +52,12 @@ msg["Bcc"] = bcc
 msg["Cc"] = recipient
 
 text = msg.as_string()
-#GPIO SETUP
-channel = 21
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel, GPIO.IN)
 
-def callback(channel):
-        if GPIO.input(channel):
-                print("Water Not Detected!")
-                server.login(sender ,sender_password)
-                server.sendmail(sender, recipient, text)
-                print('Mail sent')
+server.login(sender ,sender_password)
+
+server.sendmail(sender, recipient, text)
+
+print('Mail sent')
         else:
                 print("Water Detected!")
 
