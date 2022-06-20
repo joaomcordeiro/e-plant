@@ -11,8 +11,8 @@ def callback(channel):
         if GPIO.input(channel):
                 print("Water Detected!")
         else:
-                print("Water Not Detected!")
-                from email.mime.text import MIMEText
+
+from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import smtplib
 import ssl
