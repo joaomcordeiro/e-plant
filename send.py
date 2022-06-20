@@ -13,7 +13,7 @@ server.starttls()
 sender = "eplantnotifier@outlook.com"
 recipient = "ispg4103@ispgaya.pt"
 bcc = "joaomcordeiro98@gmail.com"
-sender_password = "INSERT PASSWORD"
+sender_password = "ispg12345"
 msg = MIMEMultipart()
 html_message = """
 <html>
